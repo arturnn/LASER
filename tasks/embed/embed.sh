@@ -20,14 +20,15 @@ if [ -z ${LASER+x} ] ; then
   exit 1
 fi
 
-if [ $# -ne 3 ] ; then
-  echo "usage embed.sh input-file language output-file"
+if [ $# -ne 4 ] ; then
+  echo "usage embed.sh input-file language output-file batch-size"
   exit 1
 fi
 
 ifile=$1
 lang=$2
 ofile=$3
+sentences=$4
 
 # encoder
 model_dir="${LASER}/models"
@@ -40,4 +41,5 @@ cat $ifile \
     --token-lang ${lang} \
     --bpe-codes ${bpe_codes} \
     --output ${ofile} \
+    --max-sentences ${sentences} \
     --verbose
